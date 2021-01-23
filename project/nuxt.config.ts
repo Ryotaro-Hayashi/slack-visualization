@@ -60,6 +60,7 @@ export default {
           error: '#DD2C00',
           success: '#00E676',
           'side-bar-color': '#43425D',
+          'side-bar-icon-color': '#A5A4BF',
           'background': '#F5F6FA',
           'graph-dot': '#8F8BFF',
           'graph': '#A3A0FB'
