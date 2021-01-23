@@ -1,0 +1,15 @@
+version: '3'
+services:
+  slack-visualization:
+    build: 
+        context: ./
+        dockerfile: ./Dockerfile
+    tty: true
+    container_name: slack-visualization
+    working_dir: /slack-visualization/project
+    volumes:
+      - ./project:/slack-visualization/project
+    ports:
+      - 5000:3000
+    environment:
+      - HOST=0.0.0.0
