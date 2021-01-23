@@ -36,7 +36,10 @@
       <v-btn icon @click.stop="miniVariant = !miniVariant">
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn>
-      <v-toolbar-title v-text="title" />
+      <a href="/">
+        <v-toolbar-title v-text="title" />
+      </a>
+      <v-spacer />
     </v-app-bar>
 
     <!-- SPAの部分 -->
@@ -88,3 +91,12 @@ export default {
   },
 }
 </script>
+
+<style type="text/css">
+
+a { 
+  text-decoration: none;
+  color: none;
+}
+
+</style>
