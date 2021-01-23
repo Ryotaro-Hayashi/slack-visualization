@@ -1,15 +1,20 @@
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="6">
+      <!-- ロゴ -->
       <div class="text-center">
         <logo />
         <vuetify-logo />
       </div>
+      <!-- カード領域 -->
       <v-card>
+        <!-- カードタイトル -->
         <v-card-title class="headline">
           Welcome to the Vuetify + Nuxt.js template
         </v-card-title>
+        <!-- カードテキスト -->
         <v-card-text>
+          <img width="75%" height="75%" src="@/assets/index.png">
           <p>
             Vuetify is a progressive Material Design component framework for
             Vue.js. It was designed to empower developers to create amazing
@@ -71,6 +76,7 @@
             Nuxt GitHub
           </a>
         </v-card-text>
+        <!-- v-btnやv-menuなどのカードのactionsを配置するためのコンテナ -->
         <v-card-actions>
           <v-spacer />
           <v-btn color="primary" nuxt to="/inspire"> Continue </v-btn>

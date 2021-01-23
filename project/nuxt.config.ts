@@ -56,6 +56,6 @@ export default {
   srcDir: 'src/',
   // ---追記---
   router: {
-    base: '/nuxt-deploy/'
+    base: '/slack-visualization/'
   },
 }

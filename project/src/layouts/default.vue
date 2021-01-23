@@ -1,12 +1,15 @@
 <template>
   <v-app dark>
+    <!-- サイドバー -->
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
       fixed
       app
+      class="deep-purple accent-4"
     >
+      <!-- リストで選択肢を列挙 -->
       <v-list>
         <v-list-item
           v-for="(item, i) in items"
@@ -23,7 +26,10 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+
     </v-navigation-drawer>
+
+    <!-- ナビゲーションバー -->
     <v-app-bar :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn icon @click.stop="miniVariant = !miniVariant">
@@ -41,11 +47,15 @@
         <v-icon>mdi-menu</v-icon>
       </v-btn>
     </v-app-bar>
+
+    <!-- SPAの部分 -->
     <v-main>
       <v-container>
         <nuxt />
       </v-container>
     </v-main>
+
+    <!-- 右側のサイドバー -->
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
         <v-list-item @click.native="right = !right">
@@ -56,9 +66,12 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
+
+    <!-- フッター -->
     <v-footer :absolute="!fixed" app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
+    
   </v-app>
 </template>
 
