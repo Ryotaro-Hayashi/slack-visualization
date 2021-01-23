@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app light>
     <!-- サイドバー -->
     <v-navigation-drawer
       v-model="drawer"
@@ -7,7 +7,7 @@
       :clipped="clipped"
       fixed
       app
-      class="deep-purple accent-4"
+      color="side-bar-color"
     >
       <!-- リストで選択肢を列挙 -->
       <v-list>
