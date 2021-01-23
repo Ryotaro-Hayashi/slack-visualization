@@ -52,4 +52,10 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
+  // ----追記----
+  srcDir: 'src/',
+  // ---追記---
+  router: {
+    base: '/nuxt-deploy/'
+  },
 }
