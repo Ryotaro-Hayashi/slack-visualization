@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app light>
     <!-- サイドバー -->
     <v-navigation-drawer
       v-model="drawer"
@@ -7,7 +7,7 @@
       :clipped="clipped"
       fixed
       app
-      class="deep-purple accent-4"
+      color="side-bar-color"
     >
       <!-- リストで選択肢を列挙 -->
       <v-list>
@@ -19,10 +19,10 @@
           exact
         >
           <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon color="side-bar-icon-color">{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
+            <v-list-item-title class="grey--text text--lighten-5" v-text="item.title" />
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -86,12 +86,22 @@ export default {
         {
           icon: 'mdi-apps',
           title: 'Welcome',
+          to: '/welcome',
+        },
+        {
+          icon: 'mdi-trending-up',
+          title: 'Trend Topics',
           to: '/',
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire',
+          icon: 'mdi-text-search',
+          title: 'Search Messages',
+          to: '/messages',
+        },
+        {
+          icon: 'mdi-cog-outline',
+          title: 'Settings',
+          to: '/settings',
         },
       ],
       miniVariant: false,
