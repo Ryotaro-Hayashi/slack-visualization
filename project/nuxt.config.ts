@@ -48,6 +48,29 @@ export default {
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
+    theme: {
+      light: true,
+      themes: {
+        light: {
+          primary: '#1976D2',
+          accent: '#424242',
+          secondary: '#FF8F00',
+          info: '#26A69A',
+          warning: '#FFC107',
+          error: '#DD2C00',
+          success: '#00E676',
+          'side-bar-color': '#43425D',
+          'side-bar-icon-color': '#A5A4BF',
+          'background': '#F5F6FA',
+          'graph-dot': '#8F8BFF',
+          'graph': '#A3A0FB'
+        },
+      },
+      /*以下追加*/
+      options: {
+        customProperties: true
+      }
+    },
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)

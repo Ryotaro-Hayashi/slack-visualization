@@ -1,13 +1,12 @@
 <template>
-  <v-app dark>
+  <v-app light>
     <!-- サイドバー -->
     <v-navigation-drawer
+      app
       v-model="drawer"
       :mini-variant="miniVariant"
-      :clipped="clipped"
+      color="side-bar-color"
       fixed
-      app
-      class="deep-purple accent-4"
     >
       <!-- リストで選択肢を列挙 -->
       <v-list>
@@ -19,33 +18,28 @@
           exact
         >
           <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon color="side-bar-icon-color">{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
+            <v-list-item-title class="grey--text text--lighten-5" v-text="item.title" />
           </v-list-item-content>
         </v-list-item>
       </v-list>
 
+      <v-spacer />
+
     </v-navigation-drawer>
 
     <!-- ナビゲーションバー -->
-    <v-app-bar :clipped-left="clipped" fixed app>
+    <v-app-bar app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn icon @click.stop="miniVariant = !miniVariant">
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn>
-      <v-btn icon @click.stop="clipped = !clipped">
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="fixed = !fixed">
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title" />
+      <a href="/">
+        <v-toolbar-title v-text="title" />
+      </a>
       <v-spacer />
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
     </v-app-bar>
 
     <!-- SPAの部分 -->
@@ -55,21 +49,9 @@
       </v-container>
     </v-main>
 
-    <!-- 右側のサイドバー -->
-    <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light> mdi-repeat </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-
     <!-- フッター -->
-    <v-footer :absolute="!fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+    <v-footer :absolute="true" app class="justify-center pl-0" inset>
+      <span>&copy; {{ new Date().getFullYear() }} Ryotaro Hayashi All Rights Reserved</span>
     </v-footer>
     
   </v-app>
@@ -79,26 +61,42 @@
 export default {
   data() {
     return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
+      drawer: true,
       items: [
         {
           icon: 'mdi-apps',
           title: 'Welcome',
+          to: '/welcome',
+        },
+        {
+          icon: 'mdi-trending-up',
+          title: 'Trend Topics',
           to: '/',
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire',
+          icon: 'mdi-text-search',
+          title: 'Search Messages',
+          to: '/messages',
+        },
+        {
+          icon: 'mdi-cog-outline',
+          title: 'Settings',
+          to: '/settings',
         },
       ],
       miniVariant: false,
       right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js',
+      title: 'Slack Trend',
     }
   },
 }
 </script>
+
+<style type="text/css">
+
+a { 
+  text-decoration: none;
+  color: none;
+}
+
+</style>
