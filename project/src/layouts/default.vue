@@ -36,9 +36,11 @@
       <v-btn icon @click.stop="miniVariant = !miniVariant">
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn>
-      <a href="/">
-        <v-toolbar-title v-text="title" />
-      </a>
+      <button onclick="location.href='/'" >
+        <v-avatar :tile="true">
+        <v-img :src="require('@/static/icon.png')" width="75%" height="75%" ></v-img>
+      </v-avatar>
+      </button>
       <v-spacer />
     </v-app-bar>
 
@@ -86,7 +88,6 @@ export default {
       ],
       miniVariant: false,
       right: true,
-      title: 'Slack Trend',
     }
   },
 }
@@ -94,9 +95,9 @@ export default {
 
 <style type="text/css">
 
-a { 
-  text-decoration: none;
-  color: none;
+/* ロゴ押下時のボタンの枠線を消す */
+button:focus {
+	outline:0;
 }
 
 </style>
