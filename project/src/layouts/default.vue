@@ -45,7 +45,7 @@
     </v-app-bar>
 
     <!-- SPAの部分 -->
-    <v-main>
+    <v-main class="background">
       <v-container>
         <nuxt />
       </v-container>
@@ -98,6 +98,10 @@ export default {
 /* ロゴ押下時のボタンの枠線を消す */
 button:focus {
 	outline:0;
+}
+
+.background {
+  background-color: #F5F6FA;
 }
 
 </style>
