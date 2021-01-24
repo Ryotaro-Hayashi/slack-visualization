@@ -17,7 +17,7 @@
     <v-row align="center" justify="start">
       <v-list three-line>
         <template v-for="(item, index) in items">
-
+          
           <v-subheader
             v-if="item.header"
             :key="item.header"
@@ -46,15 +46,24 @@
           </v-list-item>
         </template>
       </v-list>
-      
-      <img width="75%" height="75%" src="@/assets/message_search.png">
-    </v-row> 
+    </v-row>
+
+    <v-row align="center" justify="space-between">
+      <v-pagination
+        v-model="page"
+        :length="2"
+      ></v-pagination>
+    </v-row>
+
+    <!-- <br><br>
+    <img width="75%" height="75%" src="@/assets/message_search.png"> -->
   </v-container>
 </template>
 
 <script>
   export default {
     data: () => ({
+      page: 1,
       items: [
         { header: '検索結果10件' },
         {
