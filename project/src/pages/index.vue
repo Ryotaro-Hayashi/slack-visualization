@@ -227,8 +227,7 @@
       </v-card>
     </v-col>
 
-    <v-col cols="12" sm="8" md="8" align="start">
-      <!-- カード領域 -->
+    <!-- <v-col cols="12" sm="8" md="8" align="start">
       <v-card>
         
         <v-card-text>
@@ -236,7 +235,8 @@
         </v-card-text>
         
       </v-card>
-    </v-col>
+    </v-col> -->
+
   </v-row>
 </template>
 
