@@ -7,8 +7,8 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    titleTemplate: '%s - project',
-    title: 'project',
+    // titleTemplate: '%s - project',
+    title: 'Slack Trend',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
