@@ -206,7 +206,9 @@
         </v-card-text>
 
         <v-card-text>
-          <v-chip class="ma-2" color="graph-dot" text-color="white" small></v-chip>スライドレビュー
+          <v-icon color="graph-dot" >
+            mdi-numeric-1-box-outline
+          </v-icon> スライドレビュー
 
           <!-- 流行グラフ -->
           <v-sparkline
