@@ -6,10 +6,19 @@
       <v-card>
         <!-- カードテキスト -->
         <v-card-text>
-          <p>チャンネルを選択</p>
-        </v-card-text>
+          <v-row align="center" justify="center">
+            <v-col cols="12" sm="8" md="8">
+              チャンネルを選択
+            </v-col>
 
-        <v-chip
+            <v-col cols="12" sm="4" md="4" align="center">
+              <v-btn align="end" color="primary" nuxt to="/messages">追加</v-btn>
+            </v-col>
+          </v-row>
+      
+          <v-spacer></v-spacer>
+
+          <v-chip
           v-if="chips.chip1"
           class="ma-2"
           close
@@ -40,6 +49,9 @@
           label
           @click:close="chips.chip3 = false"
         >
+          <v-avatar left>
+            <v-icon>mdi-account-circle</v-icon>
+          </v-avatar>
           Success
         </v-chip>
 
@@ -52,8 +64,9 @@
           outlined
           @click:close="chips.chip4 = false"
         >
-          Complete
+          General
         </v-chip>
+        </v-card-text>
 
         <v-divider></v-divider>
 
@@ -93,7 +106,7 @@
         <v-list-item v-for="folder in folders" :key="folder.title">
         <v-list-item-avatar>
           <v-icon class="grey lighten-1" dark >
-            mdi-folder
+            mdi-numeric-1-box
           </v-icon>
         </v-list-item-avatar>
 
