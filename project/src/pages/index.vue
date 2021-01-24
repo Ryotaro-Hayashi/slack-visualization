@@ -12,7 +12,67 @@
             </v-col>
 
             <v-col cols="12" sm="4" md="4" align="center">
-              <v-btn align="end" color="primary" nuxt to="/messages">追加</v-btn>
+              <v-dialog
+                v-model="dialog"
+                scrollable
+                max-width="300px"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    color="primary"
+                    dark
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                    追加
+                  </v-btn>
+                </template>
+
+                <v-card>
+                  <v-card-title>チャンネルを選択</v-card-title>
+                  <v-divider></v-divider>
+                  <v-card-text style="height: 300px;">
+                    <v-radio-group
+                      v-model="dialogm1"
+                      column
+                    >
+                      <v-radio
+                        label="general"
+                        value="general"
+                      ></v-radio>
+                      <v-radio
+                        label="tandom"
+                        value="random"
+                      ></v-radio>
+                      <v-radio
+                        label="agenda"
+                        value="agenda"
+                      ></v-radio>
+                      <v-radio
+                        label="times"
+                        value="times"
+                      ></v-radio>
+                    </v-radio-group>
+                  </v-card-text>
+                  <v-divider></v-divider>
+                  <v-card-actions>
+                    <v-btn
+                      color="blue darken-1"
+                      text
+                      @click="dialog = false"
+                    >
+                      Close
+                    </v-btn>
+                    <v-btn
+                      color="blue darken-1"
+                      text
+                      @click="dialog = false"
+                    >
+                      Save
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
             </v-col>
           </v-row>
       
@@ -222,6 +282,8 @@ export default {
     VuetifyLogo,
   },
   data: () => ({
+    dialogm1: '',
+    dialog: false,
     chips: {
       chip1: true,
       chip2: true,
