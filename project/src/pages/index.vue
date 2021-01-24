@@ -1,23 +1,112 @@
 <template>
   <v-row justify="center" align="center">
 
-    <!-- ランキング表示 -->
+    <!-- ランキング表示カラム -->
     <v-col cols="12" sm="8" md="4" align="start">
       <v-card>
         <!-- カードテキスト -->
         <v-card-text>
-          <p>ここでチャンネル選択</p>
+          <p>チャンネルを選択</p>
         </v-card-text>
+
+        <v-chip
+          v-if="chips.chip1"
+          class="ma-2"
+          close
+          label
+          @click:close="chips.chip1 = false"
+        >
+          Closable
+        </v-chip>
+
+        <v-chip
+          v-if="chips.chip2"
+          class="ma-2"
+          close
+          color="red"
+          text-color="white"
+          label
+          @click:close="chips.chip2 = false"
+        >
+          Remove
+        </v-chip>
+
+        <v-chip
+          v-if="chips.chip3"
+          class="ma-2"
+          close
+          color="green"
+          outlined
+          label
+          @click:close="chips.chip3 = false"
+        >
+          Success
+        </v-chip>
+
+        <v-chip
+          v-if="chips.chip4"
+          class="ma-2"
+          close
+          color="orange"
+          label
+          outlined
+          @click:close="chips.chip4 = false"
+        >
+          Complete
+        </v-chip>
 
         <v-divider></v-divider>
 
         <v-card-text>
-          <p>ここで期間選択</p>
+            <p>期間を選択</p>
+            <v-menu
+              ref="menu"
+              v-model="menu"
+              :close-on-content-click="false"
+              transition="scale-transition"
+              offset-y
+              min-width="auto"
+            >
+            <template v-slot:activator="{ on, attrs }">
+              <v-text-field
+              v-model="dateRangeText"
+              label="Date range"
+              prepend-icon="mdi-calendar"
+              readonly
+              v-bind="attrs"
+              v-on="on"
+            />
+            </template>
+
+            <v-date-picker
+              ref="picker"
+              v-model="dates"
+              range
+              @change="save"
+            ></v-date-picker>
+            </v-menu>
         </v-card-text>
 
-        <v-card-text>
-          <p>ここでランキング表示</p>
-        </v-card-text>
+        <!-- ランキング表示 -->
+        <v-list subheader two-line>
+
+        <v-list-item v-for="folder in folders" :key="folder.title">
+        <v-list-item-avatar>
+          <v-icon class="grey lighten-1" dark >
+            mdi-folder
+          </v-icon>
+        </v-list-item-avatar>
+
+        <v-list-item-content>
+          <v-list-item-title v-text="folder.title"></v-list-item-title>
+
+          <v-list-item-subtitle v-text="folder.subtitle"></v-list-item-subtitle>
+        </v-list-item-content>
+        
+      </v-list-item>
+
+      <v-divider></v-divider>
+    </v-list>
 
         <!-- v-btnやv-menuなどのカードのactionsを配置するためのコンテナ -->
         <v-card-actions>
@@ -119,5 +208,55 @@ export default {
     Logo,
     VuetifyLogo,
   },
+  data: () => ({
+    chips: {
+      chip1: true,
+      chip2: true,
+      chip3: true,
+      chip4: true,
+    },
+    files: [
+      {
+        color: 'blue',
+        icon: 'mdi-clipboard-text',
+        subtitle: 'Jan 20, 2014',
+        title: 'Vacation itinerary',
+      },
+      {
+        color: 'amber',
+        icon: 'mdi-gesture-tap-button',
+        subtitle: 'Jan 10, 2014',
+        title: 'Kitchen remodel',
+      },
+    ],
+    folders: [
+      {
+        subtitle: '23件のメッセージ',
+        title: 'スライドレビュー',
+      },
+      {
+        subtitle: '19件のメッセージ',
+        title: '発表',
+      },
+      {
+        subtitle: '18件のメッセージ',
+        title: 'ポスター',
+      },
+    ],
+    dates: ['2019-09-10', '2019-09-20'],
+  }),
+  computed: {
+    dateRangeText () {
+      return this.dates.join(' ~ ')
+    },
+  },
 }
 </script>
+
+<style type="text/css">
+
+/* pタグの改行をなくす */
+p {
+  display:inline;
+}
+</style>
