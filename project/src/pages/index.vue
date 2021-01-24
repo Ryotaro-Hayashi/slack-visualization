@@ -193,80 +193,46 @@
     <v-col cols="12" sm="8" md="8" align="start">
       <!-- カード領域 -->
       <v-card>
-        <!-- カードタイトル -->
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
+        
+        <v-card-text>
+          <v-row>
+            <v-col cols="6" sm="6" md="6">
+              各単語の流行グラフ
+            </v-col>
+            <v-col cols="6" sm="6" md="6" align="end">
+              過去1ヶ月
+            </v-col>
+          </v-row>
+        </v-card-text>
 
-        <!-- カードテキスト -->
+        <v-card-text>
+          <v-chip class="ma-2" color="graph-dot" text-color="white" small></v-chip>スライドレビュー
+
+          <!-- 流行グラフ -->
+          <v-sparkline
+            :labels="labels"
+            :value="value"
+            color="graph"
+            line-width="1"
+            padding="10"
+            :smooth="10"
+            fill
+            width="500"
+          ></v-sparkline>
+
+        </v-card-text>
+        
+      </v-card>
+    </v-col>
+
+    <v-col cols="12" sm="8" md="8" align="start">
+      <!-- カード領域 -->
+      <v-card>
+        
         <v-card-text>
           <img width="75%" height="75%" src="@/assets/index.png">
-          <p>
-            Vuetify is a progressive Material Design component framework for
-            Vue.js. It was designed to empower developers to create amazing
-            applications.
-          </p>
-          <p>
-            For more information on Vuetify, check out the
-            <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation </a
-            >.
-          </p>
-          <p>
-            If you have questions, please join the official
-            <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord </a
-            >.
-          </p>
-          <p>
-            Find a bug? Report it on the github
-            <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board </a
-            >.
-          </p>
-          <p>
-            Thank you for developing with Vuetify and I look forward to bringing
-            more exciting features in the future.
-          </p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3" />
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br />
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
         </v-card-text>
-        <!-- v-btnやv-menuなどのカードのactionsを配置するためのコンテナ -->
-        <v-card-actions>
-          <v-spacer />
-          <v-btn color="primary" nuxt to="/inspire"> Continue </v-btn>
-        </v-card-actions>
+        
       </v-card>
     </v-col>
   </v-row>
@@ -318,7 +284,27 @@ export default {
         title: 'ポスター',
       },
     ],
-    dates: ['2019-09-10', '2019-09-20'],
+    dates: ['2020-09-10', '2020-09-20'],
+    labels: [
+      '8/20',
+      '8/24',
+      '8/28',
+      '9/2',
+      '9/6',
+      '9/10',
+      '9/15',
+      '9/20',
+    ],
+    value: [
+      200,
+      675,
+      410,
+      390,
+      310,
+      460,
+      250,
+      800,
+    ],
   }),
   computed: {
     dateRangeText () {
