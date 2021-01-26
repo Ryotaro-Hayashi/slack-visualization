@@ -32,27 +32,12 @@
                   <v-card-title>チャンネルを選択</v-card-title>
                   <v-divider></v-divider>
                   <v-card-text style="height: 300px;">
-                    <v-radio-group
-                      v-model="dialogm1"
-                      column
-                    >
-                      <v-radio
-                        label="general"
-                        value="general"
-                      ></v-radio>
-                      <v-radio
-                        label="tandom"
-                        value="random"
-                      ></v-radio>
-                      <v-radio
-                        label="agenda"
-                        value="agenda"
-                      ></v-radio>
-                      <v-radio
-                        label="times"
-                        value="times"
-                      ></v-radio>
-                    </v-radio-group>
+                    <v-checkbox
+                      v-for="chip in chips"
+                      :key="chip.name"
+                      v-model="chip.active"
+                      :label="`# ${chip.name.toString()}`"
+                    ></v-checkbox>
                   </v-card-text>
                   <v-divider></v-divider>
                   <v-card-actions>
