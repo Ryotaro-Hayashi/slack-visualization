@@ -32,12 +32,14 @@
                   <v-card-title class="justify-center">チャンネルを選択</v-card-title>
                   <v-divider></v-divider>
                   <v-card-text style="height: 300px;">
-                    <v-checkbox
-                      v-for="chip in chips"
-                      :key="chip.name"
-                      v-model="chip.active"
-                      :label="`# ${chip.name.toString()}`"
-                    ></v-checkbox>
+                    <v-container>
+                      <v-checkbox
+                          v-for="chip in chips"
+                          :key="chip.name"
+                          v-model="chip.active"
+                          :label="`# ${chip.name.toString()}`"
+                      ></v-checkbox>
+                    </v-container>
                   </v-card-text>
                   <v-divider></v-divider>
                   <v-card-actions>
