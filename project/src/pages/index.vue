@@ -79,58 +79,21 @@
           <v-spacer></v-spacer>
 
           <v-chip
-          v-if="chips.chip1"
-          class="ma-2"
-          close
-          label
-          @click:close="chips.chip1 = false"
-        >
-          Closable
-        </v-chip>
+            v-for="chip in showActiveChannels"
+            :key="chip.name"
+            class="ma-2"
+            close
+            label
+            @click:close="chip.active = false"
+          >
+            {{chip.name}}
+          </v-chip>
+          
+          </v-card-text>
 
-        <v-chip
-          v-if="chips.chip2"
-          class="ma-2"
-          close
-          color="red"
-          text-color="white"
-          label
-          @click:close="chips.chip2 = false"
-        >
-          Remove
-        </v-chip>
+          <v-divider></v-divider>
 
-        <v-chip
-          v-if="chips.chip3"
-          class="ma-2"
-          close
-          color="green"
-          outlined
-          label
-          @click:close="chips.chip3 = false"
-        >
-          <v-avatar left>
-            <v-icon>mdi-account-circle</v-icon>
-          </v-avatar>
-          Success
-        </v-chip>
-
-        <v-chip
-          v-if="chips.chip4"
-          class="ma-2"
-          close
-          color="orange"
-          label
-          outlined
-          @click:close="chips.chip4 = false"
-        >
-          General
-        </v-chip>
-        </v-card-text>
-
-        <v-divider></v-divider>
-
-        <v-card-text>
+          <v-card-text>
             <p>期間を選択</p>
             <v-menu
               ref="menu"
@@ -158,36 +121,36 @@
               @change="save"
             ></v-date-picker>
             </v-menu>
-        </v-card-text>
+          </v-card-text>
 
-        <!-- ランキング表示 -->
-        <v-list subheader two-line>
+          <!-- ランキング表示 -->
+          <v-list subheader two-line>
 
-        <v-list-item v-for="folder in folders" :key="folder.title">
-        <v-list-item-avatar>
-          <v-icon class="grey lighten-1" dark >
-            mdi-numeric-1-box
-          </v-icon>
-        </v-list-item-avatar>
+          <v-list-item v-for="folder in folders" :key="folder.title">
+          <v-list-item-avatar>
+            <v-icon class="grey lighten-1" dark >
+              mdi-numeric-1-box
+            </v-icon>
+          </v-list-item-avatar>
 
-        <v-list-item-content>
-          <v-list-item-title v-text="folder.title"></v-list-item-title>
+          <v-list-item-content>
+            <v-list-item-title v-text="folder.title"></v-list-item-title>
 
-          <v-list-item-subtitle v-text="folder.subtitle"></v-list-item-subtitle>
-        </v-list-item-content>
-        
-      </v-list-item>
+            <v-list-item-subtitle v-text="folder.subtitle"></v-list-item-subtitle>
+          </v-list-item-content>
+          
+        </v-list-item>
 
-      <v-divider></v-divider>
-    </v-list>
+        <v-divider></v-divider>
+      </v-list>
 
-        <!-- v-btnやv-menuなどのカードのactionsを配置するためのコンテナ -->
-        <v-card-actions>
-          <v-spacer />
-          <v-btn color="primary" nuxt to="/messages"> Search Messages </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
+      <!-- v-btnやv-menuなどのカードのactionsを配置するためのコンテナ -->
+      <v-card-actions>
+        <v-spacer />
+        <v-btn color="primary" nuxt to="/messages"> Search Messages </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-col>
 
     <!-- グラフ表示 -->
     <v-col cols="12" sm="8" md="8" align="start">
@@ -252,12 +215,20 @@ export default {
   data: () => ({
     dialogm1: '',
     dialog: false,
-    chips: {
-      chip1: true,
-      chip2: true,
-      chip3: true,
-      chip4: true,
-    },
+    chips: [
+      {
+        active: true,
+        name: 'general'
+      },
+      {
+        active: false,
+        name: 'random'
+      },
+      {
+        active: true,
+        name: 'agenda'
+      },
+    ],
     files: [
       {
         color: 'blue',
@@ -311,6 +282,9 @@ export default {
   computed: {
     dateRangeText () {
       return this.dates.join(' ~ ')
+    },
+    showActiveChannels() {
+      return this.chips.filter(chip => chip.active)
     },
   },
 }
