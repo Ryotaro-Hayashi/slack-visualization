@@ -76,32 +76,35 @@
 
           <v-card-text>
             <p>期間を選択</p>
-            <v-menu
-              ref="menu"
-              v-model="menu"
-              :close-on-content-click="false"
-              transition="scale-transition"
-              offset-y
-              min-width="auto"
-            >
-            <template v-slot:activator="{ on, attrs }">
-              <v-text-field
-              v-model="dateRangeText"
-              label="Date range"
-              prepend-icon="mdi-calendar"
-              readonly
-              v-bind="attrs"
-              v-on="on"
-            />
-            </template>
+            <v-container justify="top">
+              <v-menu
+                ref="menu"
+                v-model="menu"
+                :close-on-content-click="false"
+                transition="scale-transition"
+                offset-y
+                min-width="auto"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                    v-model="dateRangeText"
+                    prepend-icon="mdi-calendar"
+                    readonly
+                    v-bind="attrs"
+                    v-on="on"
+                    class="merginfield"
+                  />
+                </template>
 
-            <v-date-picker
-              ref="picker"
-              v-model="dates"
-              range
-              @change="save"
-            ></v-date-picker>
-            </v-menu>
+                <v-date-picker
+                  ref="picker"
+                  v-model="dates"
+                  range
+                  @change="save"
+                ></v-date-picker>
+              </v-menu>
+            </v-container>
+            
           </v-card-text>
 
           <!-- ランキング表示 -->
@@ -171,16 +174,6 @@
       </v-card>
     </v-col>
 
-    <!-- <v-col cols="12" sm="8" md="8" align="start">
-      <v-card>
-        
-        <v-card-text>
-          <img width="75%" height="75%" src="@/assets/index.png">
-        </v-card-text>
-        
-      </v-card>
-    </v-col> -->
-
   </v-row>
 </template>
 
@@ -246,7 +239,7 @@ export default {
         title: 'ポスター',
       },
     ],
-    dates: ['2020-09-10', '2020-09-20'],
+    dates: ['2021-01-25', '2021-01-26'],
     labels: [
       '8/20',
       '8/24',
@@ -269,8 +262,30 @@ export default {
     ],
   }),
   computed: {
+    // 日付のフォーマット調整
     dateRangeText () {
-      return this.dates.join(' ~ ')
+      // 日付を"~"で結合してから文字列化
+      let date_range = String(this.dates.join(' ~ '));
+      // "-"で分割
+      let date_range_splitted = date_range.split('-');
+
+      console.log(date_range_splitted)
+
+      let zero = '0';
+
+      for (let i = 0; i < date_range_splitted.length; i++) {
+        // 頭文字が0のとき
+        if (date_range_splitted[i].indexOf(zero) === true) {
+          // 頭文字の0を削除して再度配列に格納
+          date_range_splitted[i] = date_range_splitted[i].slice(1);
+        }
+      }
+      // "/"で結合
+      date_range = date_range_splitted.join('/');
+
+      console.log(date_range)
+    
+      return date_range
     },
     showActiveChannels() {
       return this.chips.filter(chip => chip.active)
@@ -284,5 +299,9 @@ export default {
 /* pタグの改行をなくす */
 p {
   display:inline;
+}
+
+.merginfield {
+  margin: 0rem 1.5rem 0rem 1.5rem;
 }
 </style>
