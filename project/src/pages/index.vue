@@ -92,7 +92,7 @@
                     readonly
                     v-bind="attrs"
                     v-on="on"
-                    class="merginfield"
+                    class="date_text_field"
                   />
                 </template>
 
@@ -301,7 +301,7 @@ p {
   display:inline;
 }
 
-.merginfield {
+.date_text_field {
   margin: 0rem 1.5rem 0rem 1.5rem;
 }
 </style>
