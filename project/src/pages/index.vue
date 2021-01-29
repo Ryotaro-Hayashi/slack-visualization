@@ -358,6 +358,19 @@ p {
 }
 
 .date_text_field {
-  margin: 0rem 1.5rem 0rem 1.5rem;
+  margin: 0rem 4rem 0rem 1.5rem;
 }
+
+.gold {
+  background: linear-gradient(#E0CA82, #CAA846);
+}
+
+.silver {
+  background: linear-gradient(#DCDDDD, #9EACB4);
+}
+
+.bronze {
+  background: linear-gradient(#C9AE5D, #C47022);
+}
+
 </style>
