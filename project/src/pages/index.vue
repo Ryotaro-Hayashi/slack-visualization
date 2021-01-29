@@ -7,56 +7,63 @@
         <v-card>
           <!-- カードテキスト -->
           <v-card-text>
-            <v-row align="center" justify="center">
-              <v-col cols="12" sm="8" md="8">
-                チャンネルを選択
-              </v-col>
+            <v-container>
+              <v-row align="center" justify="center">
+                <v-col cols="12" sm="8" md="8">
+                  チャンネルを選択
+                </v-col>
 
-              <v-col cols="12" sm="4" md="4" align="center">
-                <v-dialog
-                  v-model="dialog"
-                  scrollable
-                  max-width="300px"
-                >
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                      color="primary"
-                      dark
-                      v-bind="attrs"
-                      v-on="on"
-                    >
-                      追加
-                    </v-btn>
-                  </template>
-
-                  <v-card>
-                    <v-card-title class="justify-center">チャンネルを選択</v-card-title>
-                    <v-divider></v-divider>
-                    <v-card-text style="height: 300px;">
-                      <v-container>
-                        <v-checkbox
-                            v-for="chip in chips"
-                            :key="chip.name"
-                            v-model="chip.active"
-                            :label="`# ${chip.name.toString()}`"
-                        ></v-checkbox>
-                      </v-container>
-                    </v-card-text>
-                    <v-divider></v-divider>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
+                <v-col cols="12" sm="4" md="4" align="center">
+                  <v-dialog
+                    v-model="dialog"
+                    scrollable
+                    max-width="300px"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
                       <v-btn
-                        color="blue darken-1"
-                        text
-                        @click="dialog = false"
+                        light
+                        v-bind="attrs"
+                        v-on="on"
+                        small
+                        class="grey--text text--darken-1"
+                        outlined
                       >
-                        閉じる
+                        <v-icon left color="grey">
+                          mdi-plus-box
+                        </v-icon>
+                        追加
                       </v-btn>
-                    </v-card-actions>
-                  </v-card>
-                </v-dialog>
-              </v-col>
-            </v-row>
+                    </template>
+
+                    <v-card>
+                      <v-card-title class="justify-center">チャンネルを選択</v-card-title>
+                      <v-divider></v-divider>
+                      <v-card-text style="height: 300px;">
+                        <v-container>
+                          <v-checkbox
+                              v-for="chip in chips"
+                              :key="chip.name"
+                              v-model="chip.active"
+                              :label="`# ${chip.name.toString()}`"
+                          ></v-checkbox>
+                        </v-container>
+                      </v-card-text>
+                      <v-divider></v-divider>
+                      <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                          color="blue darken-1"
+                          text
+                          @click="dialog = false"
+                        >
+                          閉じる
+                        </v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
+                </v-col>
+              </v-row>
+            </v-container>
         
             <v-spacer></v-spacer>
 
