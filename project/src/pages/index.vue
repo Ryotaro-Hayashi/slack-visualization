@@ -76,57 +76,65 @@
 
           <v-card-text>
             <p>期間を選択</p>
-            <v-container justify="top">
-              <v-menu
-                ref="menu"
-                v-model="menu"
-                :close-on-content-click="false"
-                transition="scale-transition"
-                offset-y
-                min-width="auto"
-              >
-                <template v-slot:activator="{ on, attrs }">
-                  <v-text-field
-                    v-model="dateRangeText"
-                    prepend-icon="mdi-calendar"
-                    readonly
-                    v-bind="attrs"
-                    v-on="on"
-                    class="date_text_field"
-                  />
-                </template>
+            
+            <v-menu
+              ref="menu"
+              v-model="menu"
+              :close-on-content-click="false"
+              transition="scale-transition"
+              offset-y
+              min-width="auto"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                  v-model="dateRangeText"
+                  prepend-icon="mdi-calendar"
+                  readonly
+                  v-bind="attrs"
+                  v-on="on"
+                  class="date_text_field"
+                />
+              </template>
 
-                <v-date-picker
-                  ref="picker"
-                  v-model="dates"
-                  range
-                  @change="save"
-                ></v-date-picker>
-              </v-menu>
-            </v-container>
+              <v-date-picker
+                ref="picker"
+                v-model="dates"
+                range
+                @change="save"
+              ></v-date-picker>
+            </v-menu>
             
           </v-card-text>
 
-          <!-- ランキング表示 -->
+          <v-divider></v-divider>
+
+          <v-card-text>
+            <p>ランキング</p>
+            <!-- ランキング表示 -->
           <v-list subheader two-line>
 
-          <v-list-item v-for="folder in folders" :key="folder.title">
-          <v-list-item-avatar>
-            <v-icon class="grey lighten-1" dark >
-              mdi-numeric-1-box
-            </v-icon>
-          </v-list-item-avatar>
+            <v-container>
+               <!-- :color="folder.color" -->
+              <v-list-item v-for="folder in folders" :key="folder.title">
+                <v-list-item-avatar rounded  :color="folder.color">
+                  <v-icon dark large>
+                    {{ folder.icon }}
+                  </v-icon>
+                </v-list-item-avatar>
 
-          <v-list-item-content>
-            <v-list-item-title v-text="folder.title"></v-list-item-title>
+                <v-list-item-content>
+                  <v-list-item-title v-text="folder.title"></v-list-item-title>
 
-            <v-list-item-subtitle v-text="folder.subtitle"></v-list-item-subtitle>
-          </v-list-item-content>
-          
-        </v-list-item>
+                  <v-list-item-subtitle v-text="folder.subtitle"></v-list-item-subtitle>
+                </v-list-item-content>
+                
+              </v-list-item>
 
-        <v-divider></v-divider>
-      </v-list>
+              <v-divider></v-divider>
+            </v-container>
+
+          </v-list>
+          </v-card-text>
 
       <!-- v-btnやv-menuなどのカードのactionsを配置するためのコンテナ -->
       <v-card-actions>
