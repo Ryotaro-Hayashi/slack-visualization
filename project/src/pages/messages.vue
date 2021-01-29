@@ -1,17 +1,18 @@
 <template>
   <v-container>
-
-    <v-row align="center" justify="start">
-      <v-form ref="form">
-        <v-text-field
-          v-model="model"
-          :counter="max"
-          :rules="rules"
-          prepend-inner-icon="mdi-magnify"
-          label="単語を検索"
-          solo
-        ></v-text-field>
-      </v-form>
+    <v-row justify="center">
+      <v-col>
+        <v-form ref="form">
+          <v-text-field
+            v-model="model"
+            :counter="max"
+            :rules="rules"
+            prepend-inner-icon="mdi-magnify"
+            label="単語を検索"
+            solo
+          ></v-text-field>
+        </v-form>
+      </v-col>
     </v-row>
 
     <v-row align="center" justify="start">
@@ -55,8 +56,6 @@
       ></v-pagination>
     </v-row>
 
-    <!-- <br><br>
-    <img width="75%" height="75%" src="@/assets/message_search.png"> -->
   </v-container>
 </template>
 

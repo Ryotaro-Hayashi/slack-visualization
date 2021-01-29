@@ -1,248 +1,222 @@
 <template>
-  <v-row justify="center" align="center">
+  <v-container>
+    <v-row justify="center">
 
-    <!-- ランキング表示カラム -->
-    <v-col cols="12" sm="8" md="4" align="start">
-      <v-card>
-        <!-- カードテキスト -->
-        <v-card-text>
-          <v-row align="center" justify="center">
-            <v-col cols="12" sm="8" md="8">
-              チャンネルを選択
-            </v-col>
+      <!-- ランキング表示カラム -->
+      <v-col cols="12" sm="8" md="4" align="start">
+        <v-card>
+          <!-- カードテキスト -->
+          <v-card-text>
+            <v-container>
+              <v-row align="center" justify="center">
+                <v-col cols="12" sm="8" md="8">
+                  チャンネルを選択
+                </v-col>
 
-            <v-col cols="12" sm="4" md="4" align="center">
-              <v-dialog
-                v-model="dialog"
-                scrollable
-                max-width="300px"
+                <v-col cols="12" sm="4" md="4" align="center">
+                  <v-dialog
+                    v-model="dialog"
+                    scrollable
+                    max-width="300px"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn
+                        light
+                        v-bind="attrs"
+                        v-on="on"
+                        small
+                        class="grey--text text--darken-1"
+                        outlined
+                      >
+                        <v-icon left color="grey">
+                          mdi-plus-box
+                        </v-icon>
+                        追加
+                      </v-btn>
+                    </template>
+
+                    <v-card>
+                      <v-card-title class="justify-center">チャンネルを選択</v-card-title>
+                      <v-divider></v-divider>
+                      <v-card-text style="height: 300px;">
+                        <v-container>
+                          <v-checkbox
+                              v-for="chip in chips"
+                              :key="chip.name"
+                              v-model="chip.active"
+                              :label="`# ${chip.name.toString()}`"
+                          ></v-checkbox>
+                        </v-container>
+                      </v-card-text>
+                      <v-divider></v-divider>
+                      <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                          color="blue darken-1"
+                          text
+                          @click="dialog = false"
+                        >
+                          閉じる
+                        </v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
+                </v-col>
+              </v-row>
+            </v-container>
+        
+            <v-spacer></v-spacer>
+
+            <v-chip
+              v-for="chip in showActiveChannels"
+              :key="chip.name"
+              class="ma-2"
+              close
+              label
+              @click:close="chip.active = false"
+            >
+              {{chip.name}}
+            </v-chip>
+            
+            </v-card-text>
+
+            <v-divider></v-divider>
+
+            <v-card-text>
+              <p>期間を選択</p>
+              
+              <v-menu
+                ref="menu"
+                v-model="menu"
+                :close-on-content-click="false"
+                transition="scale-transition"
+                offset-y
+                min-width="auto"
               >
                 <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                    color="primary"
-                    dark
+                  <v-text-field
+                    v-model="dateRangeText"
+                    prepend-icon="mdi-calendar"
+                    readonly
                     v-bind="attrs"
                     v-on="on"
-                  >
-                    追加
-                  </v-btn>
+                    class="date_text_field"
+                  />
                 </template>
 
-                <v-card>
-                  <v-card-title>チャンネルを選択</v-card-title>
-                  <v-divider></v-divider>
-                  <v-card-text style="height: 300px;">
-                    <v-radio-group
-                      v-model="dialogm1"
-                      column
-                    >
-                      <v-radio
-                        label="general"
-                        value="general"
-                      ></v-radio>
-                      <v-radio
-                        label="tandom"
-                        value="random"
-                      ></v-radio>
-                      <v-radio
-                        label="agenda"
-                        value="agenda"
-                      ></v-radio>
-                      <v-radio
-                        label="times"
-                        value="times"
-                      ></v-radio>
-                    </v-radio-group>
-                  </v-card-text>
-                  <v-divider></v-divider>
-                  <v-card-actions>
-                    <v-btn
-                      color="blue darken-1"
-                      text
-                      @click="dialog = false"
-                    >
-                      Close
-                    </v-btn>
-                    <v-btn
-                      color="blue darken-1"
-                      text
-                      @click="dialog = false"
-                    >
-                      Save
-                    </v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog>
-            </v-col>
-          </v-row>
-      
-          <v-spacer></v-spacer>
+                <v-date-picker
+                  ref="picker"
+                  v-model="dates"
+                  range
+                  @change="save"
+                ></v-date-picker>
+              </v-menu>
+              
+            </v-card-text>
 
-          <v-chip
-          v-if="chips.chip1"
-          class="ma-2"
-          close
-          label
-          @click:close="chips.chip1 = false"
-        >
-          Closable
-        </v-chip>
+            <v-divider></v-divider>
 
-        <v-chip
-          v-if="chips.chip2"
-          class="ma-2"
-          close
-          color="red"
-          text-color="white"
-          label
-          @click:close="chips.chip2 = false"
-        >
-          Remove
-        </v-chip>
+            <v-card-text>
+              <p>ランキング</p>
+              <!-- ランキング表示 -->
+            <v-list subheader two-line>
 
-        <v-chip
-          v-if="chips.chip3"
-          class="ma-2"
-          close
-          color="green"
-          outlined
-          label
-          @click:close="chips.chip3 = false"
-        >
-          <v-avatar left>
-            <v-icon>mdi-account-circle</v-icon>
-          </v-avatar>
-          Success
-        </v-chip>
+              <v-container>
+                <v-list-item v-for="trend in trends" :key="trend.title">
+                  <v-list-item-avatar rounded  :color="trend.color">
+                    <v-icon dark large>
+                      {{ trend.icon }}
+                    </v-icon>
+                  </v-list-item-avatar>
 
-        <v-chip
-          v-if="chips.chip4"
-          class="ma-2"
-          close
-          color="orange"
-          label
-          outlined
-          @click:close="chips.chip4 = false"
-        >
-          General
-        </v-chip>
-        </v-card-text>
+                  <v-list-item-content>
+                    <v-list-item-title v-text="trend.title"></v-list-item-title>
 
-        <v-divider></v-divider>
+                    <v-list-item-subtitle v-text="trend.subtitle"></v-list-item-subtitle>
+                  </v-list-item-content>
+                  
+                </v-list-item>
+              
+              </v-container>
 
-        <v-card-text>
-            <p>期間を選択</p>
-            <v-menu
-              ref="menu"
-              v-model="menu"
-              :close-on-content-click="false"
-              transition="scale-transition"
-              offset-y
-              min-width="auto"
-            >
-            <template v-slot:activator="{ on, attrs }">
-              <v-text-field
-              v-model="dateRangeText"
-              label="Date range"
-              prepend-icon="mdi-calendar"
-              readonly
-              v-bind="attrs"
-              v-on="on"
-            />
-            </template>
+            </v-list>
+          </v-card-text>
+        </v-card>
+      </v-col>
 
-            <v-date-picker
-              ref="picker"
-              v-model="dates"
-              range
-              @change="save"
-            ></v-date-picker>
-            </v-menu>
-        </v-card-text>
+      <!-- グラフ表示 -->
+      <v-col cols="12" sm="8" md="8" align="start">
+        <!-- カード領域 -->
+        <v-card>
+          
+          <v-card-text>
+            <v-container>
+              <v-row>
+              <v-col cols="6" sm="6" md="6">
+                各単語の流行グラフ
+              </v-col>
+              <v-col cols="6" sm="6" md="6" align="end">
+                過去1ヶ月
+              </v-col>
+              </v-row>
+            </v-container>
 
-        <!-- ランキング表示 -->
-        <v-list subheader two-line>
+            <v-list subheader two-line>
+              <v-list-item v-for="trend in trends" :key="trend.title">
+                <v-container>
+                  <v-row>
+                    <v-list-item-avatar rounded  :color="trend.color" size="20">
+                      <v-icon dark>
+                        {{ trend.icon }}
+                      </v-icon>
+                    </v-list-item-avatar>
 
-        <v-list-item v-for="folder in folders" :key="folder.title">
-        <v-list-item-avatar>
-          <v-icon class="grey lighten-1" dark >
-            mdi-numeric-1-box
-          </v-icon>
-        </v-list-item-avatar>
+                    <v-list-item-content v-text="trend.title">
+                    </v-list-item-content>
+                  </v-row>
 
-        <v-list-item-content>
-          <v-list-item-title v-text="folder.title"></v-list-item-title>
+                  <v-row>
+                    <v-col>
+                      <v-list-item-content>
+                        <!-- 流行グラフ -->
+                        <v-sparkline
+                          :labels="labels"
+                          :value="trend.value"
+                          line-width="1"
+                          padding="10"
+                          :smooth="10"
+                          fill
+                          width="500"
+                          :gradient="gradient"
+                        ></v-sparkline>
+                      </v-list-item-content>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-list-item>
 
-          <v-list-item-subtitle v-text="folder.subtitle"></v-list-item-subtitle>
-        </v-list-item-content>
-        
-      </v-list-item>
+              <v-divider></v-divider>
 
-      <v-divider></v-divider>
-    </v-list>
+            </v-list>
+          </v-card-text>
+        </v-card>
+      </v-col>
 
-        <!-- v-btnやv-menuなどのカードのactionsを配置するためのコンテナ -->
-        <v-card-actions>
-          <v-spacer />
-          <v-btn color="primary" nuxt to="/messages"> Search Messages </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-
-    <!-- グラフ表示 -->
-    <v-col cols="12" sm="8" md="8" align="start">
-      <!-- カード領域 -->
-      <v-card>
-        
-        <v-card-text>
-          <v-row>
-            <v-col cols="6" sm="6" md="6">
-              各単語の流行グラフ
-            </v-col>
-            <v-col cols="6" sm="6" md="6" align="end">
-              過去1ヶ月
-            </v-col>
-          </v-row>
-        </v-card-text>
-
-        <v-card-text>
-          <v-icon color="graph-dot" >
-            mdi-numeric-1-box-outline
-          </v-icon> スライドレビュー
-
-          <!-- 流行グラフ -->
-          <v-sparkline
-            :labels="labels"
-            :value="value"
-            color="graph"
-            line-width="1"
-            padding="10"
-            :smooth="10"
-            fill
-            width="500"
-          ></v-sparkline>
-
-        </v-card-text>
-        
-      </v-card>
-    </v-col>
-
-    <!-- <v-col cols="12" sm="8" md="8" align="start">
-      <v-card>
-        
-        <v-card-text>
-          <img width="75%" height="75%" src="@/assets/index.png">
-        </v-card-text>
-        
-      </v-card>
-    </v-col> -->
-
-  </v-row>
+    </v-row>  
+  </v-container>
 </template>
 
 <script>
 import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
+
+// const gradients =
+  // ['#222'],
+  // ['#42b3f4'],
+  // ['red', 'orange', 'yellow'],
+  // ['purple', 'violet'],
+  // ['#00c6ff', '#F0F', '#FF0'],
+  // ['#f72047', '#ffd200', '#1feaea']
 
 export default {
   components: {
@@ -250,43 +224,195 @@ export default {
     VuetifyLogo,
   },
   data: () => ({
-    dialogm1: '',
+    gradient: [
+      '#f72047', '#ffd200', '#1feaea'
+    ],
     dialog: false,
-    chips: {
-      chip1: true,
-      chip2: true,
-      chip3: true,
-      chip4: true,
-    },
-    files: [
+    chips: [
       {
-        color: 'blue',
-        icon: 'mdi-clipboard-text',
-        subtitle: 'Jan 20, 2014',
-        title: 'Vacation itinerary',
+        active: true,
+        name: 'general'
       },
       {
-        color: 'amber',
-        icon: 'mdi-gesture-tap-button',
-        subtitle: 'Jan 10, 2014',
-        title: 'Kitchen remodel',
+        active: false,
+        name: 'random'
+      },
+      {
+        active: true,
+        name: 'agenda'
+      },
+      {
+        active: false,
+        name: 'times_hayashi'
+      },
+      {
+        active: false,
+        name: 'times_test'
       },
     ],
-    folders: [
+    trends: [
       {
+        icon: 'mdi-numeric-1',
         subtitle: '23件のメッセージ',
         title: 'スライドレビュー',
+        color: 'gold',
+        value: [
+          200,
+          675,
+          410,
+          390,
+          310,
+          460,
+          250,
+          800,
+        ],
       },
       {
+        icon: 'mdi-numeric-2',
         subtitle: '19件のメッセージ',
         title: '発表',
+        color: 'silver',
+        value: [
+          200,
+          675,
+          410,
+          390,
+          310,
+          460,
+          250,
+          800,
+        ],
       },
       {
+        icon: 'mdi-numeric-3',
         subtitle: '18件のメッセージ',
         title: 'ポスター',
+        color: 'bronze',
+        value: [
+          200,
+          675,
+          410,
+          390,
+          310,
+          460,
+          250,
+          800,
+        ],
+      },
+      {
+        icon: 'mdi-numeric-4',
+        subtitle: '23件のメッセージ',
+        title: 'スライドレビュー',
+        color: 'grey',
+        value: [
+          200,
+          675,
+          410,
+          390,
+          310,
+          460,
+          250,
+          800,
+        ],
+      },
+      {
+        icon: 'mdi-numeric-5',
+        subtitle: '19件のメッセージ',
+        title: '発表',
+        color: 'grey',
+        value: [
+          200,
+          675,
+          410,
+          390,
+          310,
+          460,
+          250,
+          800,
+        ],
+      },
+      {
+        icon: 'mdi-numeric-6',
+        subtitle: '18件のメッセージ',
+        title: 'ポスター',
+        color: 'grey',
+        value: [
+          200,
+          675,
+          410,
+          390,
+          310,
+          460,
+          250,
+          800,
+        ],
+      },
+      {
+        icon: 'mdi-numeric-7',
+        subtitle: '23件のメッセージ',
+        title: 'スライドレビュー',
+        color: 'grey',
+        value: [
+          200,
+          675,
+          410,
+          390,
+          310,
+          460,
+          250,
+          800,
+        ],
+      },
+      {
+        icon: 'mdi-numeric-8',
+        subtitle: '19件のメッセージ',
+        title: '発表',
+        color: 'grey',
+        value: [
+          200,
+          675,
+          410,
+          390,
+          310,
+          460,
+          250,
+          800,
+        ],
+      },
+      {
+        icon: 'mdi-numeric-9',
+        subtitle: '18件のメッセージ',
+        title: 'ポスター',
+        color: 'grey',
+        value: [
+          200,
+          675,
+          410,
+          390,
+          310,
+          460,
+          250,
+          800,
+        ],
+      },
+      {
+        icon: 'mdi-numeric-10',
+        subtitle: '23件のメッセージ',
+        title: 'スライドレビュー',
+        color: 'grey',
+        value: [
+          200,
+          675,
+          410,
+          390,
+          310,
+          460,
+          250,
+          800,
+        ],
       },
     ],
-    dates: ['2020-09-10', '2020-09-20'],
+    dates: ['2021-01-25', '2021-01-26'],
     labels: [
       '8/20',
       '8/24',
@@ -297,20 +423,35 @@ export default {
       '9/15',
       '9/20',
     ],
-    value: [
-      200,
-      675,
-      410,
-      390,
-      310,
-      460,
-      250,
-      800,
-    ],
   }),
   computed: {
+    // 日付のフォーマット調整
     dateRangeText () {
-      return this.dates.join(' ~ ')
+      // 日付を"~"で結合してから文字列化
+      let date_range = String(this.dates.join(' ~ '));
+      // "-"で分割
+      let date_range_splitted = date_range.split('-');
+
+      console.log(date_range_splitted)
+
+      let zero = '0';
+
+      for (let i = 0; i < date_range_splitted.length; i++) {
+        // 頭文字が0のとき
+        if (date_range_splitted[i].indexOf(zero) === true) {
+          // 頭文字の0を削除して再度配列に格納
+          date_range_splitted[i] = date_range_splitted[i].slice(1);
+        }
+      }
+      // "/"で結合
+      date_range = date_range_splitted.join('/');
+
+      console.log(date_range)
+    
+      return date_range
+    },
+    showActiveChannels() {
+      return this.chips.filter(chip => chip.active)
     },
   },
 }
@@ -322,4 +463,21 @@ export default {
 p {
   display:inline;
 }
+
+.date_text_field {
+  margin: 0rem 4rem 0rem 1.5rem;
+}
+
+.gold {
+  background: linear-gradient(#E0CA82, #CAA846);
+}
+
+.silver {
+  background: linear-gradient(#DCDDDD, #9EACB4);
+}
+
+.bronze {
+  background: linear-gradient(#C9AE5D, #C47022);
+}
+
 </style>
