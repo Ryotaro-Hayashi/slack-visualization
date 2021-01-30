@@ -41,6 +41,9 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
   ],
+  pwa: {
+    icon: false
+  },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
