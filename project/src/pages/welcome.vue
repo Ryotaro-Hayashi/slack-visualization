@@ -1,3 +1,7 @@
 <template>
-    <p>機能の紹介</p>
+    <v-card height="1000px">
+        <v-card-text align="center">
+            機能の説明をする予定
+        </v-card-text>
+    </v-card>
 </template>

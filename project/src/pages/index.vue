@@ -3,7 +3,7 @@
     <v-row justify="center">
 
       <!-- ランキング表示カラム -->
-      <v-col cols="5" xs="12" sm="12" md="5" align="start">
+      <v-col cols="12" md="5" lg="5" xl="5" align="start">
         <v-card>
           <!-- カードテキスト -->
           <v-card-text>
@@ -145,7 +145,7 @@
       </v-col>
 
       <!-- グラフ表示 -->
-      <v-col cols="7" xs="12" sm="12" md="7" align="start">
+      <v-col cols="12" md="7" lg="7" xl="7" align="start">
         <!-- カード領域 -->
         <v-card>
           
