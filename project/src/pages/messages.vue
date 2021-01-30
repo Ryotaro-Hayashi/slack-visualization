@@ -1,7 +1,14 @@
 <template>
-  <v-container>
-    <v-row justify="center">
-      <v-col>
+  <v-container fluid style="height: 70vh;" fill-height>
+    <v-row class="flex-column" align="center" justify="center">
+      <v-col cols="12" align="center">
+        <v-img
+          :src="require('@/static/logo.png')"
+          width="20%"
+          height="20%"
+        ></v-img>
+      </v-col>
+      <v-col cols="7">
         <v-form ref="form">
           <v-text-field
             v-model="model"
@@ -15,7 +22,10 @@
       </v-col>
     </v-row>
 
-    <v-row align="center" justify="start">
+
+    <!-- </v-layout> -->
+
+    <!-- <v-row align="center" justify="start">
       <v-list three-line>
         <template v-for="(item, index) in items">
           
@@ -54,7 +64,7 @@
         v-model="page"
         :length="2"
       ></v-pagination>
-    </v-row>
+    </v-row> -->
 
   </v-container>
 </template>

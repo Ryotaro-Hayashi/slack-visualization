@@ -195,8 +195,6 @@
                 </v-container>
               </v-list-item>
 
-              <v-divider></v-divider>
-
             </v-list>
           </v-card-text>
         </v-card>
