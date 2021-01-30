@@ -3,17 +3,17 @@
     <v-row justify="center">
 
       <!-- ランキング表示カラム -->
-      <v-col cols="12" sm="8" md="4" align="start">
+      <v-col cols="12" md="5" lg="5" xl="5" align="start">
         <v-card>
           <!-- カードテキスト -->
           <v-card-text>
             <v-container>
               <v-row align="center" justify="center">
-                <v-col cols="12" sm="8" md="8">
+                <v-col cols="7">
                   チャンネルを選択
                 </v-col>
 
-                <v-col cols="12" sm="4" md="4" align="center">
+                <v-col cols="5" align="center">
                   <v-dialog
                     v-model="dialog"
                     scrollable
@@ -145,19 +145,19 @@
       </v-col>
 
       <!-- グラフ表示 -->
-      <v-col cols="12" sm="8" md="8" align="start">
+      <v-col cols="12" md="7" lg="7" xl="7" align="start">
         <!-- カード領域 -->
         <v-card>
           
           <v-card-text>
             <v-container>
               <v-row>
-              <v-col cols="6" sm="6" md="6">
+              <v-col>
                 各単語の流行グラフ
               </v-col>
-              <v-col cols="6" sm="6" md="6" align="end">
+              <!-- <v-col cols="12" sm="4" md="4" lg="4" xl="8" align="end">
                 過去1ヶ月
-              </v-col>
+              </v-col> -->
               </v-row>
             </v-container>
 
@@ -195,8 +195,6 @@
                 </v-container>
               </v-list-item>
 
-              <v-divider></v-divider>
-
             </v-list>
           </v-card-text>
         </v-card>
@@ -209,14 +207,6 @@
 <script>
 import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
-
-// const gradients =
-  // ['#222'],
-  // ['#42b3f4'],
-  // ['red', 'orange', 'yellow'],
-  // ['purple', 'violet'],
-  // ['#00c6ff', '#F0F', '#FF0'],
-  // ['#f72047', '#ffd200', '#1feaea']
 
 export default {
   components: {
@@ -253,175 +243,175 @@ export default {
     trends: [
       {
         icon: 'mdi-numeric-1',
-        subtitle: '23件のメッセージ',
+        subtitle: '54件のメッセージ',
         title: 'スライドレビュー',
         color: 'gold',
         value: [
           200,
-          675,
+          475,
           410,
           390,
           310,
           460,
-          250,
+          650,
           800,
         ],
       },
       {
         icon: 'mdi-numeric-2',
-        subtitle: '19件のメッセージ',
+        subtitle: '52件のメッセージ',
         title: '発表',
         color: 'silver',
         value: [
           200,
-          675,
+          275,
           410,
           390,
-          310,
+          610,
           460,
-          250,
+          450,
           800,
         ],
       },
       {
         icon: 'mdi-numeric-3',
-        subtitle: '18件のメッセージ',
+        subtitle: '51件のメッセージ',
         title: 'ポスター',
         color: 'bronze',
         value: [
           200,
-          675,
+          375,
           410,
           390,
           310,
           460,
-          250,
+          750,
           800,
         ],
       },
       {
         icon: 'mdi-numeric-4',
-        subtitle: '23件のメッセージ',
-        title: 'スライドレビュー',
+        subtitle: '46件のメッセージ',
+        title: 'デモ',
         color: 'grey',
         value: [
-          200,
-          675,
+          300,
+          275,
           410,
           390,
-          310,
+          510,
           460,
-          250,
-          800,
+          450,
+          600,
         ],
       },
       {
         icon: 'mdi-numeric-5',
-        subtitle: '19件のメッセージ',
-        title: '発表',
+        subtitle: '45件のメッセージ',
+        title: '実機',
         color: 'grey',
         value: [
           200,
-          675,
-          410,
-          390,
+          275,
           310,
-          460,
-          250,
-          800,
+          390,
+          410,
+          360,
+          350,
+          500,
         ],
       },
       {
         icon: 'mdi-numeric-6',
-        subtitle: '18件のメッセージ',
-        title: 'ポスター',
+        subtitle: '33件のメッセージ',
+        title: 'ポスター作成',
         color: 'grey',
         value: [
           200,
           675,
           410,
-          390,
-          310,
           460,
-          250,
           800,
+          610,
+          250,
+          490,
         ],
       },
       {
         icon: 'mdi-numeric-7',
-        subtitle: '23件のメッセージ',
-        title: 'スライドレビュー',
+        subtitle: '32件のメッセージ',
+        title: 'スライド作成',
         color: 'grey',
         value: [
           200,
           675,
           410,
-          390,
-          310,
           460,
-          250,
           800,
+          610,
+          250,
+          390,
         ],
       },
       {
         icon: 'mdi-numeric-8',
-        subtitle: '19件のメッセージ',
-        title: '発表',
+        subtitle: '31件のメッセージ',
+        title: '報告書',
         color: 'grey',
         value: [
           200,
           675,
           410,
           390,
-          310,
-          460,
-          250,
-          800,
+          210,
+          60,
+          150,
+          100,
         ],
       },
       {
         icon: 'mdi-numeric-9',
-        subtitle: '18件のメッセージ',
-        title: 'ポスター',
+        subtitle: '24件のメッセージ',
+        title: '提出物',
         color: 'grey',
         value: [
           200,
           675,
           410,
           390,
-          310,
-          460,
-          250,
-          800,
+          210,
+          60,
+          150,
+          80,
         ],
       },
       {
         icon: 'mdi-numeric-10',
-        subtitle: '23件のメッセージ',
-        title: 'スライドレビュー',
+        subtitle: '19件のメッセージ',
+        title: '実装',
         color: 'grey',
         value: [
           200,
           675,
           410,
           390,
-          310,
-          460,
-          250,
-          800,
+          210,
+          60,
+          150,
+          50,
         ],
       },
     ],
     dates: ['2021-01-25', '2021-01-26'],
     labels: [
-      '8/20',
-      '8/24',
-      '8/28',
-      '9/2',
-      '9/6',
-      '9/10',
-      '9/15',
-      '9/20',
+      '12/20',
+      '12/24',
+      '12/28',
+      '1/2',
+      '1/6',
+      '1/10',
+      '1/15',
+      '1/26',
     ],
   }),
   computed: {
@@ -465,7 +455,7 @@ p {
 }
 
 .date_text_field {
-  margin: 0rem 4rem 0rem 1.5rem;
+  margin: 0rem 0.5rem 0rem 0.5rem;
 }
 
 .gold {

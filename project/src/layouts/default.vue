@@ -52,7 +52,7 @@
     </v-main>
 
     <!-- フッター -->
-    <v-footer :absolute="true" app class="justify-center pl-0" inset>
+    <v-footer :absolute="true" app class="justify-center pl-0 align-center" inset>
       <span>&copy; {{ new Date().getFullYear() }} Ryotaro Hayashi All Rights Reserved</span>
     </v-footer>
     
