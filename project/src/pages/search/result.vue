@@ -1,46 +1,68 @@
 <template>
-  <v-container fluid style="height: 70vh;" fill-height>
+  <v-container fluid style="height: 90vh;" fill-height>
     <v-row align="center" justify="start">
-      <v-list three-line>
-        <template v-for="(item, index) in items">
-          
-          <v-subheader
-            v-if="item.header"
-            :key="item.header"
-            v-text="item.header"
-          ></v-subheader>
+      <v-col cols="5">
+        <v-form ref="form" action='search/result'>
+          <v-text-field
+            v-model="query"
+            prepend-inner-icon="mdi-magnify"
+            label="単語を検索"
+            solo
+            background-color="white"
+          ></v-text-field>
+        </v-form>
+      </v-col>
 
-          <v-divider
-            v-else-if="item.divider"
-            :key="index"
-            :inset="item.inset"
-          ></v-divider>
+      <v-col cols="12">
+        <v-card>
+          <v-card-text>関連する単語：スライド作成，スライドレビュー，デモ，発表</v-card-text>
+        </v-card>
+        
+      </v-col>
 
-          <v-list-item
-            v-else
-            :key="item.title"
-          >
-            <v-list-item-avatar>
-              <v-img :src="item.avatar"></v-img>
-            </v-list-item-avatar>
+      <v-col cols="12">
+        <v-card>
+          <v-list three-line>
+            <template v-for="(item, index) in items">
+              
+              <v-subheader
+                v-if="item.header"
+                :key="item.header"
+                v-text="item.header"
+              ></v-subheader>
 
-            <v-list-item-content>
-              <v-list-item-title v-html="item.title"></v-list-item-title>
+              <v-divider
+                v-else-if="item.divider"
+                :key="index"
+                :inset="item.inset"
+              ></v-divider>
 
-              <v-list-item-subtitle v-html="item.subtitle"></v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </template>
-      </v-list>
+              <v-list-item
+                v-else
+                :key="item.title"
+              >
+                <v-list-item-avatar>
+                  <v-img :src="item.avatar"></v-img>
+                </v-list-item-avatar>
+
+                <v-list-item-content>
+                  <v-list-item-title v-html="item.title"></v-list-item-title>
+
+                  <v-list-item-subtitle v-html="item.subtitle"></v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </template>
+          </v-list>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" class="d-flex justify-end">
+        <v-pagination
+          v-model="page"
+          :length="2"
+        ></v-pagination>
+      </v-col>
     </v-row>
-
-    <v-row align="center" justify="space-between">
-      <v-pagination
-        v-model="page"
-        :length="2"
-      ></v-pagination>
-    </v-row>
-
   </v-container>
 </template>
 
@@ -50,7 +72,7 @@
       page: 1,
       query: '',
       items: [
-        { header: '検索結果10件' },
+        { header: '検索結果83件' },
         {
           avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
           title: 'Brunch this weekend? <span class="grey--text text--lighten-1">14:20</span>',
