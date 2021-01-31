@@ -15,7 +15,7 @@
 
       <v-col cols="12">
         <v-card>
-          <v-card-text>関連する単語：スライド作成，スライドレビュー，デモ，発表</v-card-text>
+          <v-card-text>関連する単語：レビュー，デモ，発表</v-card-text>
         </v-card>
         
       </v-col>
@@ -72,35 +72,35 @@
       page: 1,
       query: '',
       items: [
-        { header: '検索結果83件' },
+        { header: '検索結果54件' },
         {
-          avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-          title: 'Brunch this weekend? <span class="grey--text text--lighten-1">14:20</span>',
-          subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+          avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg',
+          title: 'Ryotaro <span class="grey--text text--lighten-1">20:20</span>',
+          subtitle: '頂いたレビューをもとに発表スライドを修正しました. 確認よろしくお願いします.',
         },
         { divider: true, inset: true },
         {
           avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
-          title: 'Summer BBQ <span class="grey--text text--lighten-1">14:20</span>',
-          subtitle: `<span class="text--primary">to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend.`,
+          title: 'Ryotaro Hyashi <span class="grey--text text--lighten-1">16:27</span>',
+          subtitle: `スライドのレビューするから各位準備しておいてね`,
         },
         { divider: true, inset: true },
         {
           avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg',
-          title: 'Oui oui <span class="grey--text text--lighten-1">14:20</span>',
-          subtitle: '<span class="text--primary">Sandra Adams</span> &mdash; Do you have Paris recommendations? Have you ever been?',
+          title: '林  遼太朗 <span class="grey--text text--lighten-1">16:20</span>',
+          subtitle: '<span class="text--primary">@here</span> 7/13(金)4限にデモのテストします！お手数ですがよろしくお願いします！🙇‍♂️',
         },
         { divider: true, inset: true },
         {
-          avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg',
-          title: 'Birthday gift <span class="grey--text text--lighten-1">14:20</span>',
-          subtitle: '<span class="text--primary">Trevor Hansen</span> &mdash; Have any ideas about what we should get Heidi for her birthday?',
+          avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
+          title: '林  遼太朗 <span class="grey--text text--lighten-1">11:20</span>',
+          subtitle: `<span class="text--primary">@here </span>発表で使うスライドの修正っていつ終わる？`,
         },
         { divider: true, inset: true },
         {
           avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg',
-          title: 'Recipe to try',
-          subtitle: '<span class="text--primary">Britta Holt</span> &mdash; We should eat this: Grate, Squash, Corn, and tomatillo Tacos.',
+          title: 'Hayashi <span class="grey--text text--lighten-1">11:08</span>',
+          subtitle: '発表時間は10分です！レビューお願いします！',
         },
       ],
     }),
