@@ -447,7 +447,7 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style scoped>
 
 /* pタグの改行をなくす */
 p {
@@ -469,5 +469,4 @@ p {
 .bronze {
   background: linear-gradient(#C9AE5D, #C47022);
 }
-
 </style>

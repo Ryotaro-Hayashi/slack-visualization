@@ -1,7 +1,7 @@
 <template>
   <v-container fluid style="height: 90vh;" fill-height>
     <v-row align="center" justify="start">
-      <v-col cols="5">
+      <v-col cols="7"  md="4" lg="4" xl="4" align="center">
         <v-form ref="form" action='search/result'>
           <v-text-field
             v-model="query"
@@ -9,6 +9,7 @@
             label="単語を検索"
             solo
             background-color="white"
+            hide-details=true
           ></v-text-field>
         </v-form>
       </v-col>
