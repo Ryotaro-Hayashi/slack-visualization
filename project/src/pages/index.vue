@@ -244,7 +244,7 @@ export default {
       {
         icon: 'mdi-numeric-1',
         subtitle: '54件のメッセージ',
-        title: 'スライドレビュー',
+        title: 'デモ',
         color: 'gold',
         value: [
           200,
@@ -292,7 +292,7 @@ export default {
       {
         icon: 'mdi-numeric-4',
         subtitle: '46件のメッセージ',
-        title: 'デモ',
+        title: 'スライド',
         color: 'grey',
         value: [
           300,
@@ -402,16 +402,16 @@ export default {
         ],
       },
     ],
-    dates: ['2021-01-25', '2021-01-26'],
+    dates: ['2020-07-11', '2020-07-21'],
     labels: [
-      '12/20',
-      '12/24',
-      '12/28',
-      '1/2',
-      '1/6',
-      '1/10',
-      '1/15',
-      '1/26',
+      '6/20',
+      '6/24',
+      '6/28',
+      '7/2',
+      '7/6',
+      '7/10',
+      '7/15',
+      '7/21',
     ],
   }),
   computed: {
@@ -447,7 +447,7 @@ export default {
 }
 </script>
 
-<style type="text/css">
+<style scoped>
 
 /* pタグの改行をなくす */
 p {
@@ -469,5 +469,4 @@ p {
 .bronze {
   background: linear-gradient(#C9AE5D, #C47022);
 }
-
 </style>

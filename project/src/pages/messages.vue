@@ -8,7 +8,7 @@
           height="20%"
         ></v-img>
       </v-col>
-      <v-col cols="7">
+      <v-col cols="10" md="7" lg="7" xl="7">
         <!-- <v-form ref="form" @submit="move" action='search/result'> -->
         <v-form ref="form" action='search/result'>
           <v-text-field

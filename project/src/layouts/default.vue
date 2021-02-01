@@ -51,9 +51,13 @@
       </v-container>
     </v-main>
 
-    <!-- フッター -->
-    <v-footer :absolute="true" app class="justify-center pl-0 align-center" inset>
-      <span>&copy; {{ new Date().getFullYear() }} Ryotaro Hayashi All Rights Reserved</span>
+    <v-footer padless=true>
+      <v-col
+        class="text-center"
+        cols="12"
+      >
+        <span> {{ new Date().getFullYear() }} Ryotaro Hayashi All Rights Reserved </span>
+      </v-col>
     </v-footer>
     
   </v-app>
